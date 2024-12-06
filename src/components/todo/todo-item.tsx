@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Todo } from "@/lib/store";
+import { Todo, useTodoStore } from "@/lib/store";
+import { useState } from "react";
+import { Pencil, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { EditTodoDialog } from "./edit-todo";
 
 interface TodoItemProps {
   todo: Todo;
@@ -10,6 +14,9 @@ interface TodoItemProps {
 }
 
 export function TodoItem({ todo, onToggle }: TodoItemProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const { editTodo, deleteTodo } = useTodoStore();
+
   return (
     <>
       <motion.div
@@ -38,7 +45,29 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
             {todo.description}
           </p>
         </div>
+        <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsEditing(true)}
+          >
+            <Pencil className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => deleteTodo(todo.id)}
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </div>
       </motion.div>
+      <EditTodoDialog
+        todo={todo}
+        isOpen={isEditing}
+        onClose={() => setIsEditing(false)}
+        onSave={editTodo}
+      />
     </>
   );
 }
