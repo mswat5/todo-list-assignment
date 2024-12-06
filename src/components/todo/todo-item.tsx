@@ -27,10 +27,11 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
         <Checkbox
           checked={todo.completed}
           onCheckedChange={() => onToggle(todo.id)}
+          className="mt-2 rounded-lg"
         />
         <div className="flex-1">
           <h3
-            className={`font-semibold ${
+            className={`font-semibold text-xl ${
               todo.completed ? "line-through text-gray-400" : ""
             }`}
           >

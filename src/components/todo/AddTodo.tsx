@@ -35,9 +35,9 @@ export function AddTodoDialog() {
     });
 
     setNewTodo({
-      ...newTodo,
       title: "",
       description: "",
+      date: new Date().toISOString().split("T")[0],
     });
     setIsOpen(false);
   };
