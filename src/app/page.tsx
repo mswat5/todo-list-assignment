@@ -1,5 +1,6 @@
 import { DatePicker } from "@/components/calendar/date-picker";
 import { AddTodoDialog } from "@/components/todo/AddTodo";
+import { TodoList } from "@/components/todo/todo-list";
 import { format } from "date-fns";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <div className="space-y-8">
         <div className="text-4xl font-bold ">{format(new Date(), "EEEE")}</div>
         <DatePicker />
+        <TodoList />
         <AddTodoDialog />
       </div>
     </div>
