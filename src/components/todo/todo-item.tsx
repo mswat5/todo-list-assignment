@@ -1,11 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Todo, useTodoStore } from "@/lib/store";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Pencil, Trash2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { Todo, useTodoStore } from "@/lib/store";
 import { EditTodoDialog } from "./edit-todo";
 
 interface TodoItemProps {
@@ -14,8 +14,8 @@ interface TodoItemProps {
 }
 
 export function TodoItem({ todo, onToggle }: TodoItemProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const { editTodo, deleteTodo } = useTodoStore();
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const { deleteTodo, editTodo } = useTodoStore();
 
   return (
     <>
@@ -27,7 +27,6 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
         <Checkbox
           checked={todo.completed}
           onCheckedChange={() => onToggle(todo.id)}
-          className="rounded-xl h-5 w-5"
         />
         <div className="flex-1">
           <h3
@@ -49,7 +48,7 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setIsEditing(true)}
+            onClick={() => setIsEditDialogOpen(true)}
           >
             <Pencil className="h-4 w-4" />
           </Button>
@@ -64,8 +63,8 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
       </motion.div>
       <EditTodoDialog
         todo={todo}
-        isOpen={isEditing}
-        onClose={() => setIsEditing(false)}
+        isOpen={isEditDialogOpen}
+        onClose={() => setIsEditDialogOpen(false)}
         onSave={editTodo}
       />
     </>

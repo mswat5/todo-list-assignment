@@ -8,18 +8,22 @@ export interface Todo {
   completed: boolean;
   date: string;
 }
+
 interface TodoState {
   todos: Todo[];
+  selectedDate: Date;
   addTodo: (todo: Omit<Todo, "id">) => void;
   toggleTodo: (id: string) => void;
-  editTodo: (id: string, todo: Partial<Todo>) => void;
   deleteTodo: (id: string) => void;
+  editTodo: (id: string, todo: Partial<Todo>) => void;
+  setSelectedDate: (date: Date) => void;
 }
 
 export const useTodoStore = create<TodoState>()(
   persist(
     (set) => ({
       todos: [],
+      selectedDate: new Date(),
       addTodo: (todo) =>
         set((state) => ({
           todos: [...state.todos, { ...todo, id: crypto.randomUUID() }],
@@ -30,20 +34,20 @@ export const useTodoStore = create<TodoState>()(
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
           ),
         })),
+      deleteTodo: (id) =>
+        set((state) => ({
+          todos: state.todos.filter((todo) => todo.id !== id),
+        })),
       editTodo: (id, updatedTodo) =>
         set((state) => ({
           todos: state.todos.map((todo) =>
             todo.id === id ? { ...todo, ...updatedTodo } : todo
           ),
         })),
-      deleteTodo: (id) =>
-        set((state) => ({
-          todos: state.todos.filter((todo) => todo.id != id),
-        })),
+      setSelectedDate: (date) => set({ selectedDate: date }),
     }),
-
     {
-      name: "todos-Storage",
+      name: "todo-storage",
     }
   )
 );
