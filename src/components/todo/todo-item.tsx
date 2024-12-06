@@ -20,6 +20,7 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
         <Checkbox
           checked={todo.completed}
           onCheckedChange={() => onToggle(todo.id)}
+          className="rounded-xl h-5 w-5"
         />
         <div className="flex-1">
           <h3
