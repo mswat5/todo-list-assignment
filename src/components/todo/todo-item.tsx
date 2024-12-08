@@ -22,12 +22,12 @@ export function TodoItem({ todo, onToggle }: TodoItemProps) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-start space-x-4 bg-gray-50 p-4 rounded-lg group"
+        className="flex items-start space-x-2 bg-white p-4 rounded-lg group"
       >
         <Checkbox
           checked={todo.completed}
           onCheckedChange={() => onToggle(todo.id)}
-          className="mt-2 rounded-lg"
+          className="mt-2 h-5 w-5 rounded-xl"
         />
         <div className="flex-1">
           <h3

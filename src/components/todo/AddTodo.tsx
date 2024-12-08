@@ -46,8 +46,11 @@ export function AddTodoDialog() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <div className="fixed bottom-8 left-0 right-0 flex justify-center">
-          <Button className="rounded-full w-14 h-14 shadow-lg" size="icon">
-            <Plus className="h-6 w-6" />
+          <Button
+            className="rounded-full  bg-white  w-12 h-12 shadow-lg hover:bg-white"
+            size="icon"
+          >
+            <Plus className="h-6 w-6 font-semibold text-black " />
           </Button>
         </div>
       </DialogTrigger>
