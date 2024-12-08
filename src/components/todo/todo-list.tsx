@@ -19,7 +19,7 @@ export function TodoList() {
     <div className="space-y-6">
       <DateFilters />
       <TodoStats />
-      <div className="bg-gray-200">
+      <div className="">
         <h2 className="text-2xl font-bold mb-4">
           {format(selectedDate, "MMMM d, yyyy")}
         </h2>
