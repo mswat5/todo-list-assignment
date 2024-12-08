@@ -31,7 +31,7 @@ export function TodoStats() {
         </div>
         <p className="text-2xl font-bold">{todaysTodos.length}</p>
       </div>
-      <div className="bg-white p-4 rounded-lg">
+      <div className="bg-white p-3 rounded-lg">
         <div className="flex items-center gap-2 text-gray-600 mb-2">
           <CheckCircle2 className="h-4 w-4" />
           <span className="text-sm">Completed</span>
